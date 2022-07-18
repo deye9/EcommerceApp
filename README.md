@@ -8,6 +8,7 @@
 4. cd ios && pod install && cd ..
 5. @react-navigation/drawer
 6. react-native-gesture-handler react-native-reanimated
+7. @react-navigation/stack
 7. Add import 'react-native-gesture-handler'; to either your app or index.js. It should be the first line
 8. Change your babel.config.js to
 module.exports = {
