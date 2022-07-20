@@ -3,7 +3,7 @@
 import React, {useState, useEffect} from 'react';
 import {ActivityIndicator, View, Image} from 'react-native';
 
-import route from '../routes/route';
+import route from '../config/Route';
 import {styles} from '../assets/AppStyles';
 import AsyncStorage from '@react-native-community/async-storage';
 

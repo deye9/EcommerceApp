@@ -1,4 +1,4 @@
-const route = {
+export default Route = {
   HOME: 'Home',
   HOME_PATH: 'home_screen',
   LOGIN: 'Login',
@@ -17,5 +17,3 @@ const route = {
   // Profile: '/profile',
   // ProfileDetail: '/profile/:id',
 };
-
-export default route;

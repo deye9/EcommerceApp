@@ -3,12 +3,12 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 // Import Screens
-import route from '../routes/route';
+import route from '../config/Route';
 import {styles} from '../assets/AppStyles';
 import HomeScreen from '../screens/HomeScreen';
 import SplashScreen from '../screens/SplashScreen';
-import LoginScreen from '../screens/Auth/LoginScreen';
-import RegistrationScreen from '../screens/Auth/RegistrationScreen';
+import LoginScreen from '../screens/auth/LoginScreen';
+import RegistrationScreen from '../screens/auth/RegistrationScreen';
 
 // import Categories from '../screens/Categories';
 // import Ingredients from '../screens/Ingredients';

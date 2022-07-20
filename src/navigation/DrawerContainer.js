@@ -2,7 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-import Route from '../routes/route';
+import Route from '../config/Route';
 import MenuButton from '../components/MenuButton';
 import {styles} from '../assets/AppStyles';
 

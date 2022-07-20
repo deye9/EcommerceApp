@@ -15,11 +15,15 @@ import {
   ScrollView,
 } from 'react-native';
 
-import {styles} from '../../assets/AppStyles';
+import {useDispatch} from 'react-redux';
+import Route from '../../config/Route';
 import Loader from '../../components/Loader';
-import {FetchData, ValidateEmail} from '../../utils/Index';
+import {styles} from '../../assets/AppStyles';
+import {ValidateEmail} from '../../utils/Index';
+import {signUp} from '../../redux/auth/authActions';
 
 const RegistrationScreen = props => {
+  const dispatch = useDispatch();
   const emailInputRef = createRef();
   const passwordInputRef = createRef();
   const phoneNumberInputRef = createRef();
@@ -32,7 +36,6 @@ const RegistrationScreen = props => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
-  const [isRegistraionSuccess, setIsRegistraionSuccess] = useState(false);
 
   const handleSubmitButton = async () => {
     setErrortext('');
@@ -65,48 +68,27 @@ const RegistrationScreen = props => {
     //Show Loader
     setLoading(true);
 
-    const response = await FetchData('auth/register', 'POST', {
-      name: userName,
-      email: userEmail,
-      number: phoneNumber,
-      password: userPassword,
-      password_repeat: passwordRepeat,
-    });
+    // Dispatch the signup action
+    const response = await dispatch(
+      signUp({
+        name: userName,
+        email: userEmail,
+        number: phoneNumber,
+        password: userPassword,
+        password_repeat: passwordRepeat,
+      }),
+    );
 
-    if (response.status === 201) {
-      setLoading(true);
-      setIsRegistraionSuccess(true);
-    } else {
+    // Short circuit if there is an error
+    if (response.status !== 201) {
       setLoading(false);
       setErrortext(response.message);
     }
-  };
 
-  if (isRegistraionSuccess) {
-    return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-        }}>
-        <Image
-          source={require('../../assets/images/success.png')}
-          style={{
-            height: 150,
-            resizeMode: 'contain',
-            alignSelf: 'center',
-          }}
-        />
-        <Text style={styles.successTextStyle}>Registration Successful</Text>
-        <TouchableOpacity
-          style={styles.buttonStyle}
-          activeOpacity={0.5}
-          onPress={() => props.navigation.navigate('LoginScreen')}>
-          <Text style={styles.buttonTextStyle}>Login Now</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
+    // Redirect the user to the login screen
+    setLoading(true);
+    props.navigation.navigate(Route.LOGIN_PATH);
+  };
 
   return (
     <View style={styles.container}>
@@ -216,4 +198,5 @@ const RegistrationScreen = props => {
     </View>
   );
 };
+
 export default RegistrationScreen;

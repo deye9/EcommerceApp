@@ -14,7 +14,7 @@ import {
 
 import AsyncStorage from '@react-native-community/async-storage';
 
-import route from '../../routes/route';
+import route from '../../config/Route';
 import {styles} from '../../assets/AppStyles';
 import Loader from '../../components/Loader';
 import {ValidateEmail} from '../../utils/Index';
