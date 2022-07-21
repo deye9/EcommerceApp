@@ -1,9 +1,7 @@
-// Example of Splash, Login and Sign Up in React Native
-// https://aboutreact.com/react-native-login-and-signup/
-
 // Import React and Component
 import React, {useState, createRef} from 'react';
 import {
+  Alert,
   Platform,
   TextInput,
   View,
@@ -14,8 +12,9 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-
+import httpStatus from 'http-status';
 import {useDispatch} from 'react-redux';
+
 import Route from '../../config/Route';
 import Loader from '../../components/Loader';
 import {styles} from '../../assets/AppStyles';
@@ -65,6 +64,11 @@ const RegistrationScreen = props => {
       return;
     }
 
+    if (userPassword !== passwordRepeat) {
+      setErrortext('Passwords do not match');
+      return;
+    }
+
     //Show Loader
     setLoading(true);
 
@@ -80,13 +84,14 @@ const RegistrationScreen = props => {
     );
 
     // Short circuit if there is an error
-    if (response.status !== 201) {
+    if (response.status !== httpStatus.CREATED) {
       setLoading(false);
       setErrortext(response.message);
     }
 
+    Alert.alert("You're all set!", 'Kindly proceed to login');
+
     // Redirect the user to the login screen
-    setLoading(true);
     props.navigation.navigate(Route.LOGIN_PATH);
   };
 

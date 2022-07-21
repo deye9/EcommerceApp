@@ -1,7 +1,7 @@
 import {
+  ERROR,
   AUTH_LOADING,
   AUTH_SUCCESS,
-  AUTH_FAILURE,
   LOGOUT,
   SIGN_UP,
   LOGIN,
@@ -48,12 +48,12 @@ export const authReducer = (state = initialState, action) => {
         message: action.message,
         loading: false,
       };
-    case AUTH_FAILURE:
+    case ERROR:
       return {
         ...state,
         error: true,
-        message: action.message,
         loading: false,
+        message: action.payload,
       };
     case LOGOUT:
       return {

@@ -11,22 +11,24 @@ import {
   Pressable,
   KeyboardAvoidingView,
 } from 'react-native';
+import httpStatus from 'http-status';
+import {useDispatch} from 'react-redux';
 
-import AsyncStorage from '@react-native-community/async-storage';
-
-import route from '../../config/Route';
-import {styles} from '../../assets/AppStyles';
+import Route from '../../config/Route';
 import Loader from '../../components/Loader';
+import {styles} from '../../assets/AppStyles';
 import {ValidateEmail} from '../../utils/Index';
+import {logIn} from '../../redux/auth/authActions';
 
 const LoginScreen = ({navigation}) => {
+  const dispatch = useDispatch();
   const passwordInputRef = createRef();
   const [loading, setLoading] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const [errortext, setErrortext] = useState('');
   const [userPassword, setUserPassword] = useState('');
 
-  const handleSubmitPress = () => {
+  const handleSubmitPress = async () => {
     setErrortext('');
 
     if (!userEmail || !ValidateEmail(userEmail)) {
@@ -35,48 +37,29 @@ const LoginScreen = ({navigation}) => {
     }
 
     if (!userPassword) {
-      setErrortext('Please fill Password');
+      setErrortext('Please enter a valid password');
       return;
     }
 
+    //Show Loader
     setLoading(true);
-    let dataToSend = {email: userEmail, password: userPassword};
-    let formBody = [];
-    for (let key in dataToSend) {
-      let encodedKey = encodeURIComponent(key);
-      let encodedValue = encodeURIComponent(dataToSend[key]);
-      formBody.push(encodedKey + '=' + encodedValue);
-    }
-    formBody = formBody.join('&');
 
-    fetch('http://localhost:3000/api/user/login', {
-      method: 'POST',
-      body: formBody,
-      headers: {
-        //Header Defination
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-      },
-    })
-      .then(response => response.json())
-      .then(responseJson => {
-        //Hide Loader
-        setLoading(false);
-        console.log(responseJson);
-        // If server response message same as Data Matched
-        if (responseJson.status === 'success') {
-          AsyncStorage.setItem('user_id', responseJson.data.email);
-          console.log(responseJson.data.email);
-          navigation.replace('DrawerNavigationRoutes');
-        } else {
-          setErrortext(responseJson.msg);
-          console.log('Please check your email id or password');
-        }
-      })
-      .catch(error => {
-        //Hide Loader
-        setLoading(false);
-        console.error(error);
-      });
+    // Dispatch the signup action
+    const response = await dispatch(
+      logIn({
+        email: userEmail,
+        password: userPassword,
+      }),
+    );
+
+    if (response.status !== httpStatus.OK) {
+      setLoading(false);
+      setErrortext(response.message);
+      return;
+    }
+
+    // Redirect the user to the landing page
+    navigation.navigate(Route.HOME_PATH);
   };
 
   return (
@@ -133,7 +116,7 @@ const LoginScreen = ({navigation}) => {
           </Pressable>
           <Text
             style={styles.registerTextStyle}
-            onPress={() => navigation.navigate(route.REGISTER_PATH)}>
+            onPress={() => navigation.navigate(Route.REGISTER_PATH)}>
             New Here ? Register
           </Text>
         </KeyboardAvoidingView>
@@ -141,4 +124,5 @@ const LoginScreen = ({navigation}) => {
     </View>
   );
 };
+
 export default LoginScreen;
