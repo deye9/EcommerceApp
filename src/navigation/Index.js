@@ -17,7 +17,7 @@ const DrawerStack = () => {
       drawerContent={() => {
         return <DrawerContainer />;
       }}>
-      <Drawer.Screen name="Navigator" component={MainNavigator} />
+      <Drawer.Screen name="Home" component={MainNavigator} />
     </Drawer.Navigator>
   );
 };

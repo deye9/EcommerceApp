@@ -24,9 +24,9 @@ const LoginScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const passwordInputRef = createRef();
   const [loading, setLoading] = useState(false);
-  const [userEmail, setUserEmail] = useState('');
+  const [userEmail, setUserEmail] = useState('marklyan@gmail.com');
   const [errortext, setErrortext] = useState('');
-  const [userPassword, setUserPassword] = useState('');
+  const [userPassword, setUserPassword] = useState('simple_password');
 
   const handleSubmitPress = async () => {
     setErrortext('');
@@ -57,6 +57,9 @@ const LoginScreen = ({navigation}) => {
       setErrortext(response.message);
       return;
     }
+
+    // Hide Loader
+    setLoading(false);
 
     // Redirect the user to the landing page
     navigation.navigate(Route.HOME_PATH);
