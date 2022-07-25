@@ -1,5 +1,5 @@
 import {StyleSheet, StatusBar} from 'react-native';
-import {themes} from './themes';
+import {themes, Colors} from './themes';
 
 export const styles = StyleSheet.create({
   btnClickContain: {
@@ -22,16 +22,42 @@ export const styles = StyleSheet.create({
     marginLeft: 10,
     marginTop: 2,
   },
-  drawerContent: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  drawerContainer: {
-    flex: 1,
-    alignItems: 'flex-start',
+
+  sideMenuContainer: {
+    width: '100%',
+    height: '100%',
+    color: 'white',
+    paddingTop: 40,
     paddingHorizontal: 20,
+    backgroundColor: themes.active.Success,
+  },
+  profileHeader: {
+    flexDirection: 'row',
+    // backgroundColor: '#307ecc',
+    padding: 15,
+    textAlign: 'center',
+  },
+  profileHeaderPicCircle: {
+    width: 60,
+    height: 60,
+    borderRadius: 60 / 2,
+    color: 'white',
+    backgroundColor: '#ffffff',
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  profileHeaderText: {
+    color: 'white',
+    alignSelf: 'center',
+    paddingHorizontal: 10,
+    fontWeight: 'bold',
+  },
+  profileHeaderLine: {
+    height: 1,
+    marginHorizontal: 20,
+    backgroundColor: '#e2e2e2',
+    marginTop: 15,
   },
   headerTitleStyle: {
     flex: 1,
@@ -39,6 +65,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     alignSelf: 'center',
   },
+
   container: {
     flex: 1,
     alignItems: 'center',
@@ -114,8 +141,10 @@ export const styles = StyleSheet.create({
     marginBottom: 25,
   },
 
-  // Remove
+  // Accordion
 
+
+  // Remove
   registerTextStyle: {
     color: '#FFFFFF',
     textAlign: 'center',
