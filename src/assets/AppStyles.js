@@ -87,6 +87,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     alignItems: 'center',
   },
+
   // Loader Styles
   modalBackground: {
     flex: 1,
@@ -142,7 +143,58 @@ export const styles = StyleSheet.create({
   },
 
   // Accordion
-
+  row: {
+    height: 35,
+    paddingLeft: 15,
+    paddingRight: 18,
+    alignItems: 'center',
+    flexDirection: 'row',
+    // backgroundColor: Colors.CGRAY,
+    justifyContent: 'space-between',
+  },
+  title: {
+    fontSize: 14,
+    // fontWeight: 'bold',
+    color: Colors.DARKGRAY,
+  },
+  parentHr: {
+    height: 1,
+    width: '100%',
+    color: Colors.WHITE,
+  },
+  childRow: {
+    flexDirection: 'row',
+    backgroundColor: Colors.GRAY,
+    justifyContent: 'space-between',
+  },
+  button: {
+    height: 35,
+    fontSize: 12,
+    width: '100%',
+    paddingLeft: 35,
+    paddingRight: 35,
+    alignItems: 'center',
+  },
+  btnActive: {
+    borderColor: Colors.GREEN,
+  },
+  btnInActive: {
+    borderColor: Colors.DARKGRAY,
+  },
+  itemActive: {
+    fontSize: 12,
+    color: Colors.GREEN,
+  },
+  itemInActive: {
+    fontSize: 12,
+    color: Colors.DARKGRAY,
+  },
+  colorActive: {
+    borderColor: Colors.GREEN,
+  },
+  colorInActive: {
+    borderColor: Colors.DARKGRAY,
+  },
 
   // Remove
   registerTextStyle: {
