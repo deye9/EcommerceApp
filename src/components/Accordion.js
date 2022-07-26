@@ -8,11 +8,14 @@ import {
   UIManager,
   TouchableOpacity,
 } from 'react-native';
+
 import {styles} from '../assets/AppStyles';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
 const Accordion = ({data, title}) => {
   const [expanded, setExpanded] = useState(false);
   const [accordionState, setAccordionState] = useState(data);
+  const [chevronState, setChevronState] = useState(['fas', 'chevron-down']);
 
   if (
     Platform.OS === 'android' &&
@@ -30,12 +33,21 @@ const Accordion = ({data, title}) => {
   const toggleExpand = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setExpanded(!expanded);
+    !expanded === true
+      ? setChevronState(['fas', 'chevron-up'])
+      : setChevronState(['fas', 'chevron-down']);
   };
 
   return (
     <View>
       <TouchableOpacity style={styles.row} onPress={() => toggleExpand()}>
         <Text>{title}</Text>
+        <FontAwesomeIcon
+          size={15}
+          color={'#915159'}
+          icon={chevronState}
+          style={styles.alignRight}
+        />
       </TouchableOpacity>
       <View style={styles.parentHr} />
       {expanded && (
@@ -52,13 +64,18 @@ const Accordion = ({data, title}) => {
                   item.value ? styles.btnActive : styles.btnInActive,
                 ]}
                 onPress={() => onClick(index)}>
-                <Text style={styles.itemInActive}>{item.title}</Text>
-                {item.icon}
-                {/* <Icon
-                    name={'check-circle'}
-                    size={24}
-                    color={item.value ? Colors.GREEN : Colors.LIGHTGRAY}
-                  /> */}
+                <Text style={styles.itemInActive}>
+                  {item.icon === null || item.icon === undefined ? (
+                    ''
+                  ) : (
+                    <FontAwesomeIcon
+                      icon={item.icon}
+                      color={'blue'}
+                      size={15}
+                    />
+                  )}
+                  {' ' + item.title}
+                </Text>
               </TouchableOpacity>
             </View>
           )}

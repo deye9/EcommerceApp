@@ -1,5 +1,9 @@
-import React from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {fas} from '@fortawesome/free-solid-svg-icons';
+import {fab} from '@fortawesome/free-brands-svg-icons';
+import {far} from '@fortawesome/free-regular-svg-icons';
+import {library} from '@fortawesome/fontawesome-svg-core';
+
+library.add(fab, fas, far);
 
 const routes = {
   HOME: 'Home',
@@ -9,13 +13,47 @@ const routes = {
   REGISTER: 'Register',
   REGISTER_PATH: 'registration_screen',
 
-
   Accordion: [
     {
-      title: 'Non Veg Biryanis',
+      key: 1,
+      title: 'Drinks',
+      icon: ['fas', 'chevron-down'],
+      children: [
+        {title: 'Cocktail', value: false, icon: ['fas', 'user']},
+        {title: 'Mocktail', value: false, icon: ['far', 'address-card']},
+        {title: 'Lemon Soda', value: false},
+        {title: 'Orange Soda', value: false},
+      ],
+    },
+    {
+      key: 2,
+      title: 'Electronics',
+      icon: ['fas', 'chevron-down'],
+      children: [
+        {title: 'Choco Lava Cake', value: false},
+        {title: 'Gulabjamun', value: false},
+        {title: 'Kalajamun', value: false},
+        {title: 'Jalebi', value: false},
+      ],
+    },
+    {
+      key: 3,
+      icon: ['fas', 'chevron-down'],
+      title: 'Phones and Tablets',
+      children: [
+        {title: 'Chicken Dominator', value: false},
+        {title: 'Peri Peri Chicken', value: false},
+        {title: 'Indie Tandoori Paneer', value: false},
+        {title: 'Veg Extraveganza', value: false},
+      ],
+    },
+    {
+      key: 4,
+      icon: ['fas', 'chevron-down'],
+      title: 'Computers and Accessories',
       children: [
         {
-          title: 'Chicken Biryani',
+          title: 'Mac',
           value: false,
           showAtBottom: true,
           showInDrawer: true,
@@ -25,33 +63,6 @@ const routes = {
         },
         {title: 'Mutton Biryani', value: false},
         {title: 'Prawns Biryani', value: false},
-      ],
-    },
-    {
-      title: 'Pizzas',
-      children: [
-        {title: 'Chicken Dominator', value: false},
-        {title: 'Peri Peri Chicken', value: false},
-        {title: 'Indie Tandoori Paneer', value: false},
-        {title: 'Veg Extraveganza', value: false},
-      ],
-    },
-    {
-      title: 'Drinks',
-      children: [
-        {title: 'Cocktail', value: false},
-        {title: 'Mocktail', value: false},
-        {title: 'Lemon Soda', value: false},
-        {title: 'Orange Soda', value: false},
-      ],
-    },
-    {
-      title: 'Deserts',
-      children: [
-        {title: 'Choco Lava Cake', value: false},
-        {title: 'Gulabjamun', value: false},
-        {title: 'Kalajamun', value: false},
-        {title: 'Jalebi', value: false},
       ],
     },
   ],

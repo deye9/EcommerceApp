@@ -1,20 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, Alert, LogBox} from 'react-native';
+import {View, Text, LogBox, Alert} from 'react-native';
+import {DrawerItem, useDrawerStatus} from '@react-navigation/drawer';
 import {useNavigation, DrawerActions} from '@react-navigation/native';
-import {
-  DrawerContentScrollView,
-  DrawerItem,
-  useDrawerStatus,
-} from '@react-navigation/drawer';
 
 import routes from '../config/Route';
 import {styles} from '../assets/AppStyles';
+import {clearStorage} from '../utils/Index';
 import Accordion from '../components/Accordion';
 
 export default function DrawerContainer(props) {
   const navigation = useNavigation();
-  const isDrawerOpen = useDrawerStatus() === 'open';
   const [menu] = useState(routes.Accordion);
+  const isDrawerOpen = useDrawerStatus() === 'open';
 
   // Ignore the VirtualizedLists should never be nested error
   useEffect(() => {
@@ -24,7 +21,9 @@ export default function DrawerContainer(props) {
   const renderAccordions = () => {
     const items = [];
     for (let item of menu) {
-      items.push(<Accordion title={item.title} data={item.children} />);
+      items.push(
+        <Accordion title={item.title} data={item.children} key={item.key} />,
+      );
     }
     return items;
   };
@@ -41,38 +40,34 @@ export default function DrawerContainer(props) {
       </View>
       <View style={styles.profileHeaderLine} />
       {renderAccordions()}
-      <DrawerContentScrollView {...props}>
-        <DrawerItem label={routes.HOME} style={styles.errorTextStyle} />
-        <DrawerItem label="Help" onPress={() => alert('Link to help')} />
-        <DrawerItem
-          label="Logout"
-          onPress={() => {
-            if (isDrawerOpen) {
-              navigation.dispatch(DrawerActions.toggleDrawer());
-            }
-            Alert.alert(
-              'Logout',
-              'Are you sure? You want to logout?',
-              [
-                {
-                  text: 'Cancel',
-                  onPress: () => {
-                    return null;
-                  },
+      <DrawerItem
+        label="Logout"
+        onPress={() => {
+          if (isDrawerOpen) {
+            navigation.dispatch(DrawerActions.toggleDrawer());
+          }
+          Alert.alert(
+            'Logout',
+            'Are you sure? You want to logout?',
+            [
+              {
+                text: 'Cancel',
+                onPress: () => {
+                  return null;
                 },
-                {
-                  text: 'Confirm',
-                  onPress: () => {
-                    // AsyncStorage.clear();
-                    props.navigation.replace('Auth');
-                  },
+              },
+              {
+                text: 'Confirm',
+                onPress: async () => {
+                  clearStorage();
+                  navigation.navigate(routes.LOGIN_PATH);
                 },
-              ],
-              {cancelable: false},
-            );
-          }}
-        />
-      </DrawerContentScrollView>
+              },
+            ],
+            {cancelable: false},
+          );
+        }}
+      />
     </View>
   );
 }
