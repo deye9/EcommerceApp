@@ -7,52 +7,16 @@ import {
   useDrawerStatus,
 } from '@react-navigation/drawer';
 
-import Route from '../config/Route';
+import routes from '../config/Route';
 import {styles} from '../assets/AppStyles';
 import Accordion from '../components/Accordion';
-
-const initialMenu = [
-  {
-    title: 'Non Veg Biryanis',
-    data: [
-      {key: 'Chicken Biryani', value: false},
-      {key: 'Mutton Biryani', value: false},
-      {key: 'Prawns Biryani', value: false},
-    ],
-  },
-  {
-    title: 'Pizzas',
-    data: [
-      {key: 'Chicken Dominator', value: false},
-      {key: 'Peri Peri Chicken', value: false},
-      {key: 'Indie Tandoori Paneer', value: false},
-      {key: 'Veg Extraveganza', value: false},
-    ],
-  },
-  {
-    title: 'Drinks',
-    data: [
-      {key: 'Cocktail', value: false},
-      {key: 'Mocktail', value: false},
-      {key: 'Lemon Soda', value: false},
-      {key: 'Orange Soda', value: false},
-    ],
-  },
-  {
-    title: 'Deserts',
-    data: [
-      {key: 'Choco Lava Cake', value: false},
-      {key: 'Gulabjamun', value: false},
-      {key: 'Kalajamun', value: false},
-      {key: 'Jalebi', value: false},
-    ],
-  },
-];
 
 export default function DrawerContainer(props) {
   const navigation = useNavigation();
   const isDrawerOpen = useDrawerStatus() === 'open';
-  const [menu] = useState(initialMenu);
+  const [menu] = useState(routes.Accordion);
+
+  // Ignore the VirtualizedLists should never be nested error
   useEffect(() => {
     LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
   }, []);
@@ -60,7 +24,7 @@ export default function DrawerContainer(props) {
   const renderAccordions = () => {
     const items = [];
     for (let item of menu) {
-      items.push(<Accordion title={item.title} data={item.data} />);
+      items.push(<Accordion title={item.title} data={item.children} />);
     }
     return items;
   };
@@ -76,10 +40,10 @@ export default function DrawerContainer(props) {
         <Text style={styles.profileHeaderText}>About React</Text>
       </View>
       <View style={styles.profileHeaderLine} />
+      {renderAccordions()}
       <DrawerContentScrollView {...props}>
-        <DrawerItem label={Route.HOME} />
+        <DrawerItem label={routes.HOME} style={styles.errorTextStyle} />
         <DrawerItem label="Help" onPress={() => alert('Link to help')} />
-        {renderAccordions()}
         <DrawerItem
           label="Logout"
           onPress={() => {

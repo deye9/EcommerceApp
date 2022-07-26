@@ -14,7 +14,7 @@ import {
 import httpStatus from 'http-status';
 import {useDispatch} from 'react-redux';
 
-import Route from '../../config/Route';
+import routes from '../../config/Route';
 import Loader from '../../components/Loader';
 import {styles} from '../../assets/AppStyles';
 import {ValidateEmail} from '../../utils/Index';
@@ -62,7 +62,7 @@ const LoginScreen = ({navigation}) => {
     setLoading(false);
 
     // Redirect the user to the landing page
-    navigation.navigate(Route.HOME_PATH);
+    navigation.navigate(routes.HOME_PATH);
   };
 
   return (
@@ -119,7 +119,7 @@ const LoginScreen = ({navigation}) => {
           </Pressable>
           <Text
             style={styles.registerTextStyle}
-            onPress={() => navigation.navigate(Route.REGISTER_PATH)}>
+            onPress={() => navigation.navigate(routes.REGISTER_PATH)}>
             New Here ? Register
           </Text>
         </KeyboardAvoidingView>

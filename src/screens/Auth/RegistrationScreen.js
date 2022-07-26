@@ -15,7 +15,7 @@ import {
 import httpStatus from 'http-status';
 import {useDispatch} from 'react-redux';
 
-import Route from '../../config/Route';
+import routes from '../../config/Route';
 import Loader from '../../components/Loader';
 import {styles} from '../../assets/AppStyles';
 import {ValidateEmail} from '../../utils/Index';
@@ -92,7 +92,7 @@ const RegistrationScreen = props => {
     Alert.alert("You're all set!", 'Kindly proceed to login');
 
     // Redirect the user to the login screen
-    props.navigation.navigate(Route.LOGIN_PATH);
+    props.navigation.navigate(routes.LOGIN_PATH);
   };
 
   return (

@@ -3,8 +3,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 // Import Screens
-import route from '../config/Route';
-import {styles} from '../assets/AppStyles';
+import routes from '../config/Route';
 import HomeScreen from '../screens/HomeScreen';
 import SplashScreen from '../screens/SplashScreen';
 import LoginScreen from '../screens/auth/LoginScreen';
@@ -15,7 +14,7 @@ const Stack = createStackNavigator();
 const MainNavigator = () => {
   return (
     <Stack.Navigator
-      screenOptions={styles.headerTitleStyle}
+      screenOptions={{headerShown: false}}
       initialRouteName="SplashScreen">
       <Stack.Screen
         name="SplashScreen"
@@ -23,19 +22,19 @@ const MainNavigator = () => {
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name={route.HOME_PATH}
+        name={routes.HOME_PATH}
         component={HomeScreen}
-        options={{title: route.HOME}}
+        options={{title: routes.HOME}}
       />
       <Stack.Screen
-        name={route.LOGIN_PATH}
+        name={routes.LOGIN_PATH}
         component={LoginScreen}
-        options={{title: route.LOGIN}}
+        options={{title: routes.LOGIN}}
       />
       <Stack.Screen
-        name={route.REGISTER_PATH}
+        name={routes.REGISTER_PATH}
         component={RegistrationScreen}
-        options={{title: route.REGISTER}}
+        options={{title: routes.REGISTER}}
       />
     </Stack.Navigator>
   );

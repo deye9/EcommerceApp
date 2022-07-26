@@ -22,7 +22,6 @@ const Accordion = ({data, title}) => {
   }
 
   const onClick = index => {
-    alert('Link to help');
     const temp = data.slice();
     temp[index].value = !temp[index].value;
     setAccordionState(temp);
@@ -36,7 +35,7 @@ const Accordion = ({data, title}) => {
   return (
     <View>
       <TouchableOpacity style={styles.row} onPress={() => toggleExpand()}>
-        <Text style={styles.title}>{title}</Text>
+        <Text>{title}</Text>
       </TouchableOpacity>
       <View style={styles.parentHr} />
       {expanded && (
@@ -53,7 +52,8 @@ const Accordion = ({data, title}) => {
                   item.value ? styles.btnActive : styles.btnInActive,
                 ]}
                 onPress={() => onClick(index)}>
-                <Text style={styles.itemInActive}>{item.key}</Text>
+                <Text style={styles.itemInActive}>{item.title}</Text>
+                {item.icon}
                 {/* <Icon
                     name={'check-circle'}
                     size={24}

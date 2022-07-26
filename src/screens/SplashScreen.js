@@ -3,7 +3,7 @@
 import React, {useState, useEffect} from 'react';
 import {ActivityIndicator, View, Image} from 'react-native';
 
-import route from '../config/Route';
+import routes from '../config/Route';
 import {styles} from '../assets/AppStyles';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -18,7 +18,9 @@ const SplashScreen = ({navigation}) => {
       //If not then send for Authentication {Login Screen}
       //else send to Home Screen
       AsyncStorage.getItem('user_id').then(value =>
-        navigation.replace(value === null ? route.LOGIN_PATH : route.HOME_PATH),
+        navigation.replace(
+          value === null ? routes.LOGIN_PATH : routes.HOME_PATH,
+        ),
       );
     }, 5000);
   }, [navigation]);

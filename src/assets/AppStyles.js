@@ -49,23 +49,21 @@ export const styles = StyleSheet.create({
   },
   profileHeaderText: {
     color: 'white',
+    fontWeight: 'bold',
     alignSelf: 'center',
     paddingHorizontal: 10,
-    fontWeight: 'bold',
   },
   profileHeaderLine: {
     height: 1,
+    marginTop: 15,
     marginHorizontal: 20,
     backgroundColor: '#e2e2e2',
-    marginTop: 15,
-  },
-  headerTitleStyle: {
-    flex: 1,
-    fontweight: 'bold',
-    textAlign: 'center',
-    alignSelf: 'center',
   },
 
+  statusBar: {
+    height: 80,
+    backgroundColor: themes.active.Success,
+  },
   container: {
     flex: 1,
     alignItems: 'center',
@@ -151,11 +149,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     // backgroundColor: Colors.CGRAY,
     justifyContent: 'space-between',
-  },
-  title: {
-    fontSize: 14,
-    // fontWeight: 'bold',
-    color: Colors.DARKGRAY,
   },
   parentHr: {
     height: 1,
