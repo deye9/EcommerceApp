@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, LogBox, Alert} from 'react-native';
+import {useDispatch} from 'react-redux';
 import {DrawerItem, useDrawerStatus} from '@react-navigation/drawer';
 import {useNavigation, DrawerActions} from '@react-navigation/native';
 
@@ -7,11 +8,13 @@ import routes from '../config/Route';
 import {styles} from '../assets/AppStyles';
 import {clearStorage} from '../utils/Index';
 import Accordion from '../components/Accordion';
+import {logout} from '../redux/auth/authActions';
 
 export default function DrawerContainer(props) {
   const navigation = useNavigation();
   const [menu] = useState(routes.Accordion);
   const isDrawerOpen = useDrawerStatus() === 'open';
+  const dispatch = useDispatch();
 
   // Ignore the VirtualizedLists should never be nested error
   useEffect(() => {
@@ -60,7 +63,7 @@ export default function DrawerContainer(props) {
                 text: 'Confirm',
                 onPress: async () => {
                   clearStorage();
-                  navigation.navigate(routes.LOGIN_PATH);
+                  dispatch(logout());
                 },
               },
             ],

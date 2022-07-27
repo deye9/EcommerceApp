@@ -60,9 +60,6 @@ const LoginScreen = ({navigation}) => {
 
     // Hide Loader
     setLoading(false);
-
-    // Redirect the user to the landing page
-    navigation.navigate(routes.HOME_PATH);
   };
 
   return (

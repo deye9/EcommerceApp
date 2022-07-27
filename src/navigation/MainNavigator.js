@@ -4,7 +4,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 // Import Screens
 import routes from '../config/Route';
-import HomeScreen from '../screens/HomeScreen';
 import SplashScreen from '../screens/SplashScreen';
 import LoginScreen from '../screens/Auth/LoginScreen';
 import RegistrationScreen from '../screens/Auth/RegistrationScreen';
@@ -14,7 +13,6 @@ const Stack = createStackNavigator();
 const AuthNavigator = () => {
   return (
     <Stack.Navigator
-      screenOptions={{headerShown: false}}
       initialRouteName="SplashScreen">
       <Stack.Screen
         name="SplashScreen"
