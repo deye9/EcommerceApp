@@ -23,38 +23,3 @@ const BottomNavigator = () => {
 };
 
 export default BottomNavigator;
-
-{
-  /* <DrawerContentScrollView {...props}>
-<DrawerItem label={routes.HOME} style={styles.errorTextStyle} />
-<DrawerItem label="Help" onPress={() => alert('Link to help')} />
-<DrawerItem
-  label="Logout"
-  onPress={() => {
-    if (isDrawerOpen) {
-      navigation.dispatch(DrawerActions.toggleDrawer());
-    }
-    Alert.alert(
-      'Logout',
-      'Are you sure? You want to logout?',
-      [
-        {
-          text: 'Cancel',
-          onPress: () => {
-            return null;
-          },
-        },
-        {
-          text: 'Confirm',
-          onPress: () => {
-            // AsyncStorage.clear();
-            props.navigation.replace('Auth');
-          },
-        },
-      ],
-      {cancelable: false},
-    );
-  }}
-/>
-</DrawerContentScrollView> */
-}
