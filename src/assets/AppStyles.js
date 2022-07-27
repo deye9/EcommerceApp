@@ -85,7 +85,10 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     alignItems: 'center',
   },
-
+  alignRight: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
   // Loader Styles
   modalBackground: {
     flex: 1,

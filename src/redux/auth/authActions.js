@@ -81,8 +81,8 @@ export const logIn = body => async dispatch => {
       message: response.data.message,
     });
 
-    saveDataToStorage('access_token', response.data.data.access_token);
-    saveDataToStorage('refresh_token', response.data.data.refresh_token);
+    await saveDataToStorage('access_token', response.data.data.access_token);
+    await saveDataToStorage('refresh_token', response.data.data.refresh_token);
 
     return response;
   } catch (err) {

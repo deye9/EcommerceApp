@@ -7,9 +7,33 @@ export const ValidateEmail = email => {
   return false;
 };
 
-export const saveDataToStorage = (key, value) => {
+export const saveDataToStorage = async (key, value) => {
   try {
-    AsyncStorage.setItem(key, JSON.stringify(value));
+    return await AsyncStorage.setItem(key, JSON.stringify(value));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getItemFromStorage = async key => {
+  try {
+    return await AsyncStorage.getItem(key);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const removeFromStorage = key => {
+  try {
+    return AsyncStorage.removeItem(key);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const clearStorage = async () => {
+  try {
+    return await AsyncStorage.clear();
   } catch (error) {
     console.log(error);
   }
