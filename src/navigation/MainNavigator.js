@@ -6,12 +6,12 @@ import {createStackNavigator} from '@react-navigation/stack';
 import routes from '../config/Route';
 import HomeScreen from '../screens/HomeScreen';
 import SplashScreen from '../screens/SplashScreen';
-import LoginScreen from '../screens/auth/LoginScreen';
-import RegistrationScreen from '../screens/auth/RegistrationScreen';
+import LoginScreen from '../screens/Auth/LoginScreen';
+import RegistrationScreen from '../screens/Auth/RegistrationScreen';
 
 const Stack = createStackNavigator();
 
-const MainNavigator = () => {
+const AuthNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{headerShown: false}}
@@ -20,11 +20,6 @@ const MainNavigator = () => {
         name="SplashScreen"
         component={SplashScreen}
         options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name={routes.HOME_PATH}
-        component={HomeScreen}
-        options={{title: routes.HOME}}
       />
       <Stack.Screen
         name={routes.LOGIN_PATH}
@@ -40,4 +35,4 @@ const MainNavigator = () => {
   );
 };
 
-export default MainNavigator;
+export default AuthNavigator;
