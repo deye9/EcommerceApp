@@ -89,3 +89,5 @@ export const logIn = body => async dispatch => {
     return dispatch(errorHandler(err));
   }
 };
+
+export const logout = () => dispatch => dispatch({ type: LOGOUT });

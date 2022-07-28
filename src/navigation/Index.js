@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
+import {useSelector} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
@@ -7,32 +8,10 @@ import {styles} from '../assets/AppStyles';
 import DrawerNavigator from './DrawerNavigator';
 import BottomNavigator from './BottomNavigator';
 import MainNavigator from './MainNavigator';
-import {getItemFromStorage} from '../utils/Index';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerStack = () => {
-  const [accessToken, setaccessToken] = useState();
-  const [refreshToken, setrefreshToken] = useState();
-
-  const getAccessToken = async () => {
-    const response = await getItemFromStorage('access_token');
-    setaccessToken(response);
-  };
-
-  const getRefreshToken = async () => {
-    const response = await getItemFromStorage('refresh_token');
-    setrefreshToken(response);
-  };
-
-  useEffect(() => {
-    getAccessToken();
-  }, []);
-
-  useEffect(() => {
-    getRefreshToken();
-  }, []);
-
   return (
     <Drawer.Navigator
       screenOptions={() => ({
@@ -44,22 +23,24 @@ const DrawerStack = () => {
       drawerContent={() => {
         return <DrawerNavigator />;
       }}>
-      <Drawer.Screen
-        name="Home"
-        component={
-          accessToken === null && refreshToken === null
-            ? MainNavigator
-            : BottomNavigator
-        }
-      />
+      <Drawer.Screen name="Home" component={BottomNavigator} />
     </Drawer.Navigator>
   );
 };
 
 export default function Navigation() {
+  const {access_token: accessToken, refresh_token: refreshToken} = useSelector(
+    state => state.authReducer?.user?.data ?? {},
+  );
+
   return (
     <NavigationContainer>
-      <DrawerStack />
+      {/* We use == to check if accessToken and refreshToken is simply empty without checking the type */}
+      {accessToken == null && refreshToken == null ? (
+        <MainNavigator />
+      ) : (
+        <DrawerStack />
+      )}
     </NavigationContainer>
   );
 }

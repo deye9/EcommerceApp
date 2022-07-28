@@ -9,7 +9,6 @@ const Tab = createBottomTabNavigator();
 const BottomNavigator = () => {
   return (
     <Tab.Navigator
-      initialRouteName="SplashScreen"
       screenOptions={() => ({
         headerShown: false,
         headerStyle: styles.statusBar,
