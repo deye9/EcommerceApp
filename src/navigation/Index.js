@@ -7,7 +7,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {styles} from '../assets/AppStyles';
 import DrawerNavigator from './DrawerNavigator';
 import BottomNavigator from './BottomNavigator';
-import MainNavigator from './MainNavigator';
+import AuthNavigator from './AuthNavigator';
 
 const Drawer = createDrawerNavigator();
 
@@ -37,7 +37,7 @@ export default function Navigation() {
     <NavigationContainer>
       {/* We use == to check if accessToken and refreshToken is simply empty without checking the type */}
       {accessToken == null && refreshToken == null ? (
-        <MainNavigator />
+        <AuthNavigator />
       ) : (
         <DrawerStack />
       )}

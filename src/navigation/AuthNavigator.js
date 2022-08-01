@@ -5,15 +5,14 @@ import {createStackNavigator} from '@react-navigation/stack';
 // Import Screens
 import routes from '../config/Route';
 import SplashScreen from '../screens/SplashScreen';
-import LoginScreen from '../screens/Auth/LoginScreen';
-import RegistrationScreen from '../screens/Auth/RegistrationScreen';
+import LoginScreen from '../screens/auth/LoginScreen';
+import RegistrationScreen from '../screens/auth/RegistrationScreen';
 
 const Stack = createStackNavigator();
 
 const AuthNavigator = () => {
   return (
-    <Stack.Navigator
-      initialRouteName="SplashScreen">
+    <Stack.Navigator initialRouteName="SplashScreen">
       <Stack.Screen
         name="SplashScreen"
         component={SplashScreen}

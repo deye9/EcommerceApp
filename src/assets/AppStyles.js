@@ -142,7 +142,10 @@ export const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 25,
   },
-
+  tabBarLabel: {
+    fontSize: 12,
+    color: '#292929',
+  },
   // Accordion
   row: {
     height: 35,

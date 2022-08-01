@@ -90,4 +90,4 @@ export const logIn = body => async dispatch => {
   }
 };
 
-export const logout = () => dispatch => dispatch({ type: LOGOUT });
+export const logout = () => dispatch => dispatch({type: LOGOUT});

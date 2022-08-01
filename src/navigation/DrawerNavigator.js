@@ -11,10 +11,10 @@ import Accordion from '../components/Accordion';
 import {logout} from '../redux/auth/authActions';
 
 export default function DrawerContainer(props) {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const [menu] = useState(routes.Accordion);
   const isDrawerOpen = useDrawerStatus() === 'open';
-  const dispatch = useDispatch();
 
   // Ignore the VirtualizedLists should never be nested error
   useEffect(() => {
